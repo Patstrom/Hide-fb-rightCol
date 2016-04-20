@@ -1,13 +1,18 @@
-function remove(){
-	try {
-		document.getElementById("rightCol").innerHTML = '';
-	}
-	catch(err){
-		alert("failed");
-	}
-
-	console.log('Removed rightCol');
+function injectCss(cssToInject) {
+	style_element = document.createElement("style");
+	style_element.innerText =cssToInject;
+	document.documentElement.insertBefore(style_element,null);
 }
 
-remove();
+function remove(){
+	var css ='#rightCol { display:none !important; }';
+	try {
+		injectCss(css);
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+
+window.onload = remove;
 
